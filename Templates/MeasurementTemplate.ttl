@@ -1,0 +1,16 @@
+ex:assessment1
+	rdf:type prov:activity ;
+	rdfs:label "Assessment1"
+	prov:uses ex:aDataset
+	prov:generatedBy "Assessor1"@en ;
+	prov:generatedAtTime "2017-01-01"^^xsd:date .
+
+
+ex:measurement1
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "An optional message"@en ;
+  dqv:computedOn ex:aDataset;
+  dqv:isMeasurementOf ex:aMetric ;
+  dqv:value 10 ;
+  prov:wasGeneratedBy ex:Assessment1 .

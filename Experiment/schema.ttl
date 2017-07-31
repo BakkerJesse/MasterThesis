@@ -1,0 +1,105 @@
+# baseURI: http://data.labs.pdok.nl/quality/def
+
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix qmd: <http://data.labs.pdok.nl/quality/id/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix qms: <http://data.labs.pdok.nl/quality/def#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov: <http://www.w3.org/ns/prov#> . 
+
+
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Classes
+# #
+# #################################################################
+#
+# 
+# http://data.labs.pdok.nl/quality/def#Quality
+
+qms:Quality
+  a rdfs:Class ;
+  rdfs:comment "Quality is a very ambiguous term. In the context of this graph, we refer to the following breakdown of quality."@en ;
+  rdf:about "http://goo.gl/gbS6Lc" .
+# 
+# http://data.labs.pdok.nl/quality/def#DatasetQuality
+  
+qms:DatasetQuality
+  a rdfs:Class ;
+  rdfs:subClassOf qms:Quality ;
+  rdfs:comment "Encompasses the quality of the dataset or source, instead of the information stored in the dataset."@en .
+# 
+# http://data.labs.pdok.nl/quality/def#DataQuality
+
+qms:DataQuality
+  a rdfs:Class ; 
+  rdfs:subClassOf qms:Quality ;
+  rdfs:comment "Encompasses the quality of information in the dataset."@en ;  
+  rdfs:comment "Metrics of type Dataquality (including the subclasses of qms:Dataquality) are generally measured on a dataset, whereas metrics of type Dataset quality are measured on a specific distribution. "@en;.# 
+# http://data.labs.pdok.nl/quality/def#SchemaQuality
+
+qms:SchemaQuality
+  a rdfs:Class ; 
+  rdfs:subClassOf qms:DataQuality ;
+  rdfs:comment "Encompasses quality of the schema on top of the data. Measurements regarding metrics of this type, also annotate related classes and properties."@en .    
+# 
+# http://data.labs.pdok.nl/quality/def#InstanceQuality
+
+qms:InstanceQuality
+  a rdfs:Class ; 
+  rdfs:subClassOf qms:DataQuality ;
+  rdfs:comment "Encompasses the quality of the instances of which the data consists. Measurements regarding metrics of this type, also annotate related instances"@en .    
+
+# 
+# 
+# 
+# #################################################################
+# #
+# #    Object Properties
+# #
+# #################################################################
+# 
+# 
+# 
+# http://data.labs.pdok.nl/quality/def#hasMeasurement
+
+qms:hasMeasurement a owl:ObjectProperty ;
+	owl:inverseOf dqv:isMeasurementOf .
+# 
+# http://data.labs.pdok.nl/quality/def#hasPrimaryDataset
+
+qms:hasPrimaryDataset a owl:ObjectProperty .
+# 
+# http://data.labs.pdok.nl/quality/def#hasTargetDataset
+
+qms:hasTargetDataset a owl:ObjectProperty .
+#
+# http://data.labs.pdok.nl/quality/def#hasMetricType
+
+qms:hasMetricType a owl:AnnotationProperty .
+#
+# http://data.labs.pdok.nl/quality/def#hasFlag
+
+qms:Flags a owl:ObjectProperty .
+#
+# http://data.labs.pdok.nl/quality/def#hasPart
+
+qms:hasPart a owl:ObjectProperty .
+#
+# http://data.labs.pdok.nl/quality/def#isPartOf
+
+qms:isPartOf a owl:ObjectProperty ;
+	owl:inverseOf qms:hasPart .
+#
+# http://data.labs.pdok.nl/quality/def#hasShape
+
+qms:hasShape a owl:ObjectProperty .
+

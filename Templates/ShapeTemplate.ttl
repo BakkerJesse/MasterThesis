@@ -1,0 +1,55 @@
+ex:assessment1
+    rdf:type prov:activity ;
+    rdfs:label "Assessment1"
+    prov:uses ex:aDataset
+    prov:generatedBy "Assessor1"@en ;
+    prov:generatedAtTime "2017-01-01"^^xsd:date .
+
+
+ex:aMetricShape1 
+	rdf:type rdfs:Class ;
+	rdf:type sh:NodeShape ; 
+	sh:targetNode ex:aMetric  ;
+	rdfs:label "A Metric Shape1"@en ;
+	sh:property [
+		sh:path (ex:hasMeasurement dqv:value) ;
+		sh:minInclusive 5000 ;
+		sh:maxExclusive 10001 ;
+		sh:datatype xsd:integer ;
+	] ;
+	skos:note "This shape states that it expects a 'dqv:value' between '4999' and '10001' for the measurement of ex:aMetric."@en ;
+	prov:wasGeneratedBy ex:assessment1 .
+
+	
+ex:aMetricShape2
+    rdf:type rdfs:Class ;
+    rdf:type sh:NodeShape ;
+    sh:targetNode ex:aMetric ;
+    rdfs:label "A Metric Shape2"@en ;
+    sh:property [
+        sh:path (
+            qms:hasMeasurement
+            dqv:value
+        ) ;
+        sh:datatype xsd:boolean ;
+        sh:flags "i" ;
+        sh:pattern "^T" ;
+    ] ;
+    skos:note "This shape asks for a dqv:value that starts with the letter 't', ignoring capitalisation, and is of type xsd:boolean."@en ;
+    prov:wasGeneratedBy ex:assessment1 .
+
+	
+ex:aMetricShape3
+    rdf:type rdfs:Class ;
+    rdf:type sh:NodeShape ;
+    sh:targetNode ex:aMetric ;
+    rdfs:label "A Metric Shape2"@en ;
+    sh:property [
+        sh:path (
+            qms:hasMeasurement
+            dqv:value
+        ) ;
+        sh:equals ex:anIRI
+    ] ;
+    skos:note "This shape states that the dqv:value should point to a specific IRI."@en ;
+    prov:wasGeneratedBy ex:assessment1 .

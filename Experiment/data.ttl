@@ -1,0 +1,1339 @@
+# baseURI: http://data.labs.pdok.nl/quality/id/
+# imports: http://data.labs.pdok.nl/quality/def
+# imports: http://data.labs.pdok.nl/quality/req/cbs
+# prefix: qmd
+
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qmd: <http://data.labs.pdok.nl/quality/id/> .
+@prefix qms: <http://data.labs.pdok.nl/quality/def#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqCBS: <http://data.labs.pdok.nl/quality/req/cbs#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spin: <http://spinrdf.org/spin#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+qmd:
+  rdf:type owl:Ontology ;
+  spin:imports <http://topbraid.org/spin/owlrl-all> ;
+  owl:imports <https://data.labs.pdok.nl/quality/def> ;
+  owl:imports <https://data.labs.pdok.nl/quality/req/cbs> ;
+.
+qmd:QualityMeasurementDataset
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurementDataset ;
+  rdf:type void:Dataset;
+  dcterms:created "2017-06-17"^^xsd:date ;
+  dcterms:description "A dataset containing quality measurements about CBS/2015 with requirements based on BAG"@en ;
+  dcterms:identifier qms:QualityMeasurementDataset ;
+  dcterms:title "Quality Measurement Dataset"@en ;
+  skos:prefLabel "Quality Measurement Dataset"@en ;
+  qms:hasPrimaryDataset <https://bag.basisregistraties.overheid.nl/> ;
+  qms:hasTargetDataset <https://data.pdok.nl/cbs/2015/buurt/> ;
+.
+qmd:RDFdumpavailability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Checking whether accessible/downloadable RDF dumps are provided. "@en ;
+  skos:prefLabel "RDF Dump Availability"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:SPARQLendpointaccessibility
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Checking whether a working SPARQL endpoint is present. No differentiation is made based on the quality of the response for this measure (either based on time or content)."@en ;
+  skos:prefLabel "SPARQL Endpoint Accessibility"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:URIlength
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "URIs should be readable and concise. Making sure there is no redundant information is present in the URI makes it more easily understood and de-referenced."@en ;
+  skos:prefLabel "URIs Length"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:representationalConciseness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:accuracy
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Degree of correctness and precision with which information in an information system represents states of the real world. Can be divided into semantic (correctness in regard to real world values) and syntactic (correctness in regard to its definition domain) accuracy."@en ;
+  skos:prefLabel "Accuracy"@en ;
+  dqv:inCategory qmd:intrinsic ;
+.
+qmd:ambiguousinstances
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Instances mapping to more than one real-world object, resulting in multiple possible interpretations."@en ;
+  skos:prefLabel "Ambiguous Instances"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:amountOfData
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Measures the appropriateness of the volume and quantity of data for a given task. "@en ;
+  skos:prefLabel "Amount of Data"@en ;
+  dqv:inCategory qmd:contextual ;
+.
+qmd:amountofclasses
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The amount of distinct classes in the dataset."@en ;
+  skos:prefLabel "Amount of Classes"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:amountofproperties
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The amount of distinct properties in the dataset."@en ;
+  skos:prefLabel "Amount of Properties"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:amountofresources
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The amount of resources in the dataset."@en ;
+  skos:prefLabel "Amount of Resources"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:amountoftriples
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The amount of triples in the dataset."@en ;
+  skos:prefLabel "Amount of Triples"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:attributeAccuracy
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Degree in which measurements are correct, or how precise the measurement was conducted. For instance with Geo spatial data, measurements can be done in meters or millimeters. "@en ;
+  skos:prefLabel "Attribute Accuracy"@en ;
+  dqv:expectedDataType rdfs:Literal ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:availability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Availability of a dataset is the extent to which data (or some portion of it) is present, obtainable and ready for use."@en ;
+  skos:prefLabel "Availability"@en ;
+  dqv:inCategory qmd:accessibility ;
+.
+qmd:believability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The degree to which the data is considered true and correct."@en ;
+  skos:prefLabel "Believability"@en ;
+  dqv:inCategory qmd:contextual ;
+  dqv:inCategory qmd:trust ;
+.
+qmd:blanknodes
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the percentage of blank nodes among the total number of URIs. "@en ;
+  skos:prefLabel "Blank Nodes"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:interpretability ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:community
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Providing message boards and mailing list can be used to actively improve, and help users understand and query the dataset. This metric measure the presence and use of such mechanism. A neglected message board might indicate that the dataset is no longer updated. The value of this metric is True only when message boards and/or mailing list are provided and used."@en ;
+  skos:prefLabel "Community"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:understandability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:completeness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The degree to which all required information is present in a dataset. completeness can be determined on three levels, 1) schema, also ontology completeness, 2) property completeness, measure of missing values and 3) population completeness, percentage of real world objects represented in the dataset."@en ;
+  skos:prefLabel "Completeness"@en ;
+  dqv:inCategory qmd:contextual ;
+.
+qmd:conciseness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Conciseness concerns the presence of redundant information in the dataset, either at schema level or instance level."@en ;
+  skos:prefLabel "Conciseness"@en ;
+  dqv:inCategory qmd:intrinsic ;
+.
+qmd:consistency
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "A dataset is consistent if it is free of conflicting information with respect to particular knowledge representation and inference mechanisms."@en ;
+  skos:prefLabel "Concistency"@en ;
+  dqv:inCategory qmd:intrinsic ;
+.
+qmd:contentnegotiation
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Checking whether data can be retrieved in accepted formats and languages by adding a corresponding accept-header to an HTTP request"@en ;
+  skos:prefLabel "Content Negotiation"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:versatility ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:contenttype
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Meta data attached to the http request when dereferencing a URI in a browser, can include a 'content type'. User agents can use this to quickly identify pages containing RDF. "@en ;
+  skos:prefLabel "Content Type"@en ;
+  dqv:expectedDataType xsd:string ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:copyright
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of whether the work is attributed in the same way as specified by the author or licensor. Share-alike and copyleft roughly imply that the work in question should be licensed similarly as referenced sources. The work in question can also specify share-alike and copyleft requirements."@en ;
+  skos:prefLabel "Copyright"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:licencing ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:coverage
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Coverage measures the scope of the dataset as the number of entities represented and the descriptiveness as the number of properties known for each entity."@en ;
+  skos:prefLabel "Coverage"@en ;
+  dqv:inDimension qmd:amountOfData ;
+  qms:hasMetricType qms:InstanceQuality ;
+  qms:hasPart qmd:descriptiveness ;
+  qms:hasPart qmd:scope ;
+.
+qmd:currency
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Measures the speed with with data values are updates after the real-world values change."@en ;
+  skos:prefLabel "Currency"@en ;
+  dqv:inCategory qmd:datasetdynamicity ;
+.
+qmd:currencyofdataset
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures how current the data is."@en ;
+  skos:prefLabel "Currency of Dataset"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:currency ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:currencyofdatasetcomparison
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measure the difference between the primary and Target dataset in terms of currency. "@en ;
+  skos:prefLabel "Currency of Dataset Comparison"@en ;
+  dqv:expectedDataType xsd:dayTimeDuration ;
+  dqv:inDimension qmd:currency ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:dataaccesssecurity
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Use of login credentials or use of SSL or SSH."@en ;
+  skos:prefLabel "Data Access Security"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:security ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:dataofproprietarynature
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Data only available to specific users is of proprietary nature. Even if only parts of the data is hidden from access for the outside world (possibly due to a sensitive nature of the data), this metric should be scored 'False'"@en ;
+  skos:prefLabel "Data of Proprietary Nature"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:security ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:datasetlanguage
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Checking whether data is available in different languages. For some purposes one would require the Target dataset to be in the same language as the primary dataset or at least another language that is sufficiently understood by the target users. This metric measures the amount of languages the dataset is published in. "@en ;
+  skos:prefLabel "Dataset Language"@en ;
+  dqv:expectedDataType xsd:language ;
+  dqv:inDimension qmd:versatility ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:de-referencability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "When a URI can not be properly dereferenced through a web browser and thus returns a server or client  error, this is seen as a de-referencability issue."@en ;
+  skos:note "Each URI that turned out to be not dereferencable, should be annotated. The proposed method is by means of the triple: <subject> qmd:isDereferencable 'False' "@en ;
+  skos:prefLabel "De-referencability"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:de-referencedbacklinks
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "detection of all local in-links or back-links: locally available triples in which the resource URI appears as an object, in the dereferenced document returned for the given resource."@en ;
+  skos:prefLabel "De-referenced Back-Links"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:de-referencedforwardlinks
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of all forward links: locally known triples where the local URI is mentioned in the subject"@en ;
+  skos:prefLabel "De-referenced Forward-Links"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:deprecatedclasses
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Count the occurences of classes of type owl:DeprecatedClass"@en ;
+  skos:prefLabel "Deprecated Classes"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:deprecatedproperties
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Count the occurences of classes of type owl:DeprecatedProperty"@en ;
+  skos:prefLabel "Deprecated Properties"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:descriptiveness
+  rdf:type owl:NamedIndividual ;
+  skos:definition "Measure the average number of attributes known for entities"@en ;
+  skos:prefLabel "Descriptiveness"@en ;
+  dqv:expectedDataType xsd:float ;
+  qmd:isPartOf qmd:coverage ;
+.
+qmd:disjointclasses
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "entities (inferred to be) part of two disjoint classes. This metric measures the percentage of entities where this is the case."@en ;
+  skos:prefLabel "Disjoint Classes"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:duplicateinstance
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the amount of duplicate instances"@en ;
+  skos:prefLabel "Duplicate Instance"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:conciseness ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:exemplarySPARQL
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "As with the exemplary URIs, exemplary SPARQL queries provide insight as to how the dataset can be queried. "@en ;
+  skos:prefLabel "Exemplary SPARQL"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:understandability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:exemplaryURIs
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detecting whether the URI patterns are provided"@en ;
+  skos:prefLabel "Exemplary URIs"@en ;
+  dqv:expectedDataType xsd: ;
+  dqv:inDimension qmd:understandability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:extensionalconciseness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the percentage of unique objects in the dataset. "@en ;
+  skos:prefLabel "Extensional Conciseness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:conciseness ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:frequencyofchange
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Refer to the changefrequency attribute in a Semantic Sitemap for value of the frequency or updates of a data source"@en ;
+  skos:note "expected datatype range is limited to the following: [always, hourly, daily, weekly, monthly, yearly, never]"@en ;
+  skos:prefLabel "Frequency of Change"@en ;
+  dqv:expectedDataType xsd:string ;
+  dqv:inDimension qmd:volatility ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:geometryblanknode
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The dataset contains instances representing all the 'buurten' (neighbourhoods) in the Netherlands. Each of these should be accompanied by a geometry representing the geographical area considered a specific neighbourhood. Best practices mandate that a geometry should be attached to a blank node, which is in turn linked to the neighbourhood."@en ;
+  skos:prefLabel "Geometry Blank Node"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:Interpretability ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:human-readablelabelling
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "percentage of resources containing a human readable label. For instance by means of an rdfs:label or rdfs:comment. Other vocabularies also offer labelling functions such as skos:preflabel or skos:note."@en ;
+  skos:prefLabel "Human-Readable Labelling"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:understandability ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:human-readablelicence
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of a license in the documentation of the dataset or its source"@en ;
+  skos:prefLabel "Human-Readable Licence"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:licencing ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:inaccuratefacts
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Check for inconsistencies by comparing the data to that of other sources. The metric measures the amount of facts deemed correct, by lack of evidence against the fact."@en ;
+  skos:prefLabel "Inaccurate Facts"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:inaccuratevalues
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "This metric measures the amount of inaccurate values by using functional dependencies rules between the values of two or more different predicates. A functional dependency is a constraint between different properties of an instance, in the case of linked data. the underlying concept is that if one value for property X of an instance always co-occurs with a precisely one value for property Y, then it can be said that X determines the value of Y. "@en ;
+  skos:prefLabel "Inaccurate Values"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:incompatibledatatyperange
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of ill-typed literals which do not abide by the lexical syntax for their respective datatype."@en ;
+  skos:prefLabel "Incompatible Datatype Range"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:indicativeness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Denotes the amount of metrics measured in the form of a grade between 1 and 10."@en ;
+  skos:prefLabel "Indicativeness"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:verifiability ;
+  qms:hasMetricType qms:Quality ;
+.
+qmd:instanceenrichment
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Percentage of attributes gained by interlinking and owl:sameAs relations."@en ;
+  skos:prefLabel "Instance Enrichment"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:interlinking ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:intentionalconciseness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the percentage of unique attributes in the dataset. "@en ;
+  skos:prefLabel "Intentional Conciseness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:consiceness ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:interlinking
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Interlinking involves creating triples where the object and subject refer to the same concept and the object and subject can either originate from different datasets, of the same dataset. The interlinking dimension refers to the extend where this the case."@en ;
+  skos:prefLabel "Interlinking"@en ;
+  dqv:inCategory qmd:accessibility ;
+.
+qmd:interlinkingcompleteness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Interlinking completeness measures the amount of instances that are interlinked in respect to the total amount of instances."@en ;
+  skos:note "Metric can only be measured after interlinking."@en ;
+  skos:prefLabel "Interlinking Completeness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:interpretability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Interpretability covers a more technical aspect of information. It concerns the usage of appropriate languages, symbols and units. Interpretability can be enhanced by offering data conform best practices. It should also be noted that the more interpretable the data is, the easier it is to integrate it with other datasets."@en ;
+  skos:prefLabel "Interpretability"@en ;
+  dqv:inCategory qmd:representation ;
+.
+qmd:interpretabilityofdata
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detect the use of appropriate language, symbols, units and clear definitions. For instance, the use of abbreviations can make the dataset highly understandable, but its interpretation is limited to those who know the abbreviations."@en ;
+  skos:prefLabel "Interpretability of Data"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:interpretability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:interpretabilityofterms
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Use of various schema languages to provide definitions for terms. Providing definitions for used terms helps users to interpret the information. "@en ;
+  skos:prefLabel "Interpretability of Terms"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:interpretability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:latency
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Latency is the delay between the submission of a request by a user, and the reception of a response from the system."@en ;
+  skos:note "Unit of measure is milliseconds (ms)"@en ;
+  skos:prefLabel "Latency"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:performance ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:licencing
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Concerns under which terms data can be (re)used."@en ;
+  skos:prefLabel "Licencing"@en ;
+  dqv:inCategory qmd:accessibility ;
+.
+qmd:machine-readablelicence
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of the indication of a license in the VoID description or by means of dcterms:licence."@en ;
+  skos:prefLabel "Machine-Readable Licence"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:licencing ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:malformeddatatypeliterals
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the amount of literals with an unknown datatype."@en ;
+  skos:prefLabel "Malformed Datatype Literals"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:malformedtriples
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detecting triples where the predicate is filled with an URI defined as a class or where the object position is filled by a property while the predicate is a rdf:type. These errors can be found with the help of a reasoner. "@en ;
+  skos:prefLabel "Malformed Triples"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:measurement1
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:malformedtriples ;
+  dqv:value 0 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement10
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:malformeddatatypeliterals ;
+  dqv:value "0.0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement11
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:schemaenrichment ;
+  dqv:value "0.08"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement12
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "measured with a samplesize of 1"@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:de-referencability ;
+  dqv:value "0.0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement13
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:machine-readablelicence ;
+  dqv:value "false"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement14
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "The value implies that there is an equal amount of blank nodes and 'other' resources"@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:blanknodes ;
+  dqv:value "1.0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement15
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:prolixRDFfeatures ;
+  dqv:value "0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement16
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:deprecatedclasses ;
+  dqv:value 0 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement17
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:deprecatedproperties ;
+  dqv:value 0 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement18
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:interlinkingcompleteness ;
+  dqv:value "0.0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement19
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "Scope = 12339, descriptiveness = 50"@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:descriptiveness ;
+  dqv:value "50.75"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement2
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:amountoftriples ;
+  dqv:value 626261 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement20
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "Scope = 12339, descriptiveness = 50"@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:scope ;
+  dqv:value 12339 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement21
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:community ;
+  dqv:value "false"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement22
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:RDFdumpavailability ;
+  dqv:value "false"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement23
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "population = 12339, estimated real-world objects: 1.05statistic found at: https://goo.gl/R2JSu4"@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:populationcompleteness ;
+  dqv:value "1.05"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement24
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "Value depicts percentage of resources with a hasGeometry property, where the respective object is a blank node."@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:geometryblanknode ;
+  dqv:value "1.0"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement25
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:uniformspatialrepresentation ;
+  dqv:value "true"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement26
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:surfacearea ;
+  dqv:value "0.01"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement27
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note "27 of the 28 metrics were measured"@en ;
+  dqv:computedOn qmd:QualityMeasurementGraph ;
+  dqv:isMeasurementOf qmd:indicativeness ;
+  dqv:value "9.68"^^xsd:float ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement3
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:amountofclasses ;
+  dqv:value 1 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement4
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:amountofproperties ;
+  dqv:value 52 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement5
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:amountofresources ;
+  dqv:value 12339 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement6
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:scalability ;
+  dqv:value "true"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement7
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:propertytype ;
+  dqv:value 0 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement8
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.pdok.nl/cbs/2015/buurt/> ;
+  dqv:isMeasurementOf qmd:ontologyhijacking ;
+  dqv:value "false"^^xsd:boolean ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:measurement9
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:QualityMeasurement ;
+  skos:note ""@en ;
+  dqv:computedOn <https://data.labs.pdok.nl/sparql> ;
+  dqv:isMeasurementOf qmd:disjointclasses ;
+  dqv:value 0 ;
+  prov:generatedAtTime "2017-06-17"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+.
+qmd:meta-dataproperties
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "measures the number of meta-data properties assigned to the dataset."@en ;
+  skos:prefLabel "Meta-Data Properties"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:relevancy ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:meta-datasimilarity
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "By measuring the cosine similarity of 'descriptive' metadata (i.e. Description, theme, keywords/tags) between the two datasets, one can roughly assess whether one is relevant for the other. by using other information retrieval techniques (such as language modelling) one can deal with synomyny."@en ;
+  skos:prefLabel "Meta-Data Similarity"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:relevancy ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:objectivity
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The degree to which the interpretation and usage of data is unbiased, unprejudiced and impartial."@en ;
+  skos:prefLabel "Objectivity"@en ;
+  dqv:inCategory qmd:trust ;
+.
+qmd:ontologyhijacking
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of the redefinition by third parties of classes/properties such that reasoning over data using those external terms is affected."@en ;
+  skos:prefLabel "Ontology Hijacking"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:outdatedinformation
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "With the usage of temporal metadata, one can (if available) detect outdated information based on the information retrieval concepts of age and freshness. By predicting the age of a resource, one can estimate when it should be updated. When a resource is overdue for an update, it can be considered outdated."@en ;
+  skos:prefLabel "Outdated Information"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:currency ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:outliers
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "<find consensus on measurement procedure>"@en ;
+  skos:prefLabel "Outliers"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:accuracy ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:outwardlinks
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of the existence and usage of external URIs and owl:sameAs links with external URIs."@en ;
+  skos:prefLabel "Outward Links"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:interlinking ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:performance
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Refers to the performance of a datasource and how well data can be accessed and processed."@en ;
+  skos:prefLabel "Performance"@en ;
+  dqv:inCategory qmd:accessibility ;
+.
+qmd:permissableusage
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of license indicating whether reproduction, distribution, modification or redistribution is permitted."@en ;
+  skos:note "It is also possible for the Expected Data Type to be an URI, when available for the given licence"@en ;
+  skos:prefLabel "Permissable Usage"@en ;
+  dqv:expectedDataType xsd:string ;
+  dqv:inDimension qmd:licencing ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:populationcompleteness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "This metric measures the percentage of real-world objects represented in the dataset. Attaching a number to the amount of real-world object is a difficult task. In some cases it can be assumed that the primary dataset, approximately, contains the total amount of real-world objects. in this case the total amount of objects in the measure function is known. In other cases this number can be obtained by consulting other trusted data sources."@en ;
+  skos:prefLabel "Population Completeness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:prefixindication
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "With the dataset, an indicaion of these external vocabularies should be provided to enhance understanding of the dataset. "@en ;
+  skos:prefLabel "Prefix Indication"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:understandability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:prolixRDFfeatures
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measure the usage of too lengthy rdf features such rdf reification, rdf containers and rdf collections. it is advised not to use these since it make the use of SPARQL more cumbersome and since the semantics behind these features are unclear."@en ;
+  skos:prefLabel "Prolix RDF Features"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:representationalConciseness ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:propertycompleteness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Property completeness entails every entity having the properties described in the schema known."@en ;
+  skos:prefLabel "Property Completeness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:propertyconsistency
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measures the number of instances with identical values for different attributes. When two or more properties of an instance contains the same information, but with different naming, it could be redundant. "@en ;
+  skos:prefLabel "Property Consistency"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:propertytype
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Properties of a resource can refer to either a literal value, or to a URI/blank-node, an owl:DatatypeProperty and a n owl:ObjectProperty, respectively. This metric measures the amount of triples where the datatype of the subject is incompatible with the predicate (property)."@en ;
+  skos:prefLabel "Property Type"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:re-usedvocabularies
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "The usage of established vocabularies boosts the understandability (and uniformity) of the data schemas and thereby the ease of reuse. This metric measures the number of external vocabularies used."@en ;
+  skos:prefLabel "Re-used Vocabularies"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:representationalConsistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:relevancy
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The extend to which information is applicable and helpful for a given task, and more specifically a query."@en ;
+  skos:prefLabel "Relevancy"@en ;
+  dqv:inCategory qmd:contextual ;
+.
+qmd:representationalConciseness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The extent to which the data is compact, clearly formatted and complete."@en ;
+  skos:prefLabel "Representational Conciseness"@en ;
+  dqv:inCategory qmd:representation ;
+.
+qmd:representationalConsistency
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Representational-consistency is the degree to which the format and structure of the information conforms to previously returned information as well as data from other sources."@en ;
+  skos:prefLabel "Representational Consistency"@en ;
+  dqv:inCategory qmd:representation ;
+.
+qmd:reputation
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Perceived trustworthiness of a dataset."@en ;
+  skos:prefLabel "Reputation"@en ;
+  dqv:inCategory qmd:contextual ;
+  dqv:inCategory qmd:trust ;
+.
+qmd:reputationofdataset
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "By assigning explicit ratings to the dataset (manual) and analyzing external links or page rank (semi-automated)"@en ;
+  skos:prefLabel "Reputation of Dataset"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:reputation ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:resultsizerestriction
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Time-out errors can occur when the SPARQL query attempts to retrieve large amounts of data. Data providers can impose such restriction as well. The value for this metric is zero if no restriction is imposed."@en ;
+  skos:note "The value of this metric is the max amount of results returned for a single query. If no restrictions are posed, the value is zero."@en ;
+  skos:prefLabel "Result Size Restriction"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:performance ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:scalability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Detection of whether the time to answer an amount of ten requests divided by ten is not longer than the time it takes to answer one request."@en ;
+  skos:prefLabel "Scalability"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:performance ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:schemacompleteness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Usage of external (and established) vocabularies improves the machine-readability and reusability of a schema. They also provide an overview of properties and classes relevant for a given domain and scope. This metric measures the extend to which the vocabulary is exploited by taking the percentage of distinct classes and properties of an external vocabulary reused in the dataset.   "@en ;
+  skos:prefLabel "Schema Completeness"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:schemaenrichment
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Percentage of classes and properties reused from other sources."@en ;
+  skos:prefLabel "Schema Enrichment"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:interlinking ;
+  qms:flags rdf:type ;
+  qms:flags <http://www.opengis.net/ont/geosparql#Geometry> ;
+  qms:flags <http://www.opengis.net/ont/geosparql#asWKT> ;
+  qms:flags <http://www.opengis.net/ont/geosparql#hasGeometry> ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:schemasimilarity
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "no. of classes and properties represented / total no. of classes and properties. for the purpose of interlinking, a more interesting form would take into account the intersection of the schema of both datasets as well as the parts only present in one of the datasets and their respective size."@en ;
+  skos:note "Schema similarity metric annotates the number of classes and properties unique to each dataset and classes and properties shared by the datasets. The expected data type for this metrics depicts a 'similarity score' based on the previously mentioned amounts. "@en ;
+  skos:prefLabel "Schema Similarity"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:scope
+  rdf:type owl:NamedIndividual ;
+  skos:definition "Amount of entities represented in the dataset"@en ;
+  skos:prefLabel "Scope"@en ;
+  dqv:expectedDataType xsd:integer ;
+  qmd:isPartOf qmd:coverage ;
+.
+qmd:security
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The extent to which (part of) the data is restricted from use, for instance when dealing with sensitive information."@en ;
+  skos:prefLabel "Security"@en ;
+  dqv:inCategory qmd:accessibility ;
+.
+qmd:serializationformats
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Serialization formats such as turtle (which is a human-friendly serialization of rdf) and JSON-LD (an adaption of JSON) can both be used to publish a dataset and each is preferred for different use-cases. Having multiple serialization formats available lowers the threshold for users to use the dataset."@en ;
+  skos:prefLabel "Serialization Formats"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:versatility ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:slash-URIs
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Checking for usage of slash-URIs where large amounts of data is provided. The alternative would be 'hash-URIs', where the symbol before the last word is a hash. Hash-URIs have certain advantages when dealing with larger datasets in terms of performance. "@en ;
+  skos:prefLabel "Slash-URIs"@en ;
+  dqv:expectedDataType xsd:boolean ;
+  dqv:inDimension qmd:performance ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:structureddata
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "When the URI is dereferenceable, it should provide some useful structured information. The detection of dead links or URIs without any metadata or no redirection using the status code 303 See Other or no code 200 OK."@en ;
+  skos:note "URIs not providing Structured data upon de-reference should be annotated. The proposed method is by means of the triple: <subject> qmd:URLHasData 'False' "@en ;
+  skos:prefLabel "Structured Data Availability"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:availability ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:surfacearea
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Instances with a spatial representation specified, by means of a polygon, should also make use of the following property: <https://data.pdok.nl/cbs/2015/vocab/oppervlakte> This metric measure the degree to which this is the case."@en ;
+  skos:prefLabel "Surface Area"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:completeness ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00109998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00349997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00509997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00569997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00589997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00589998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00609998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00639998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00709998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00729998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00799997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00889998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00939998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU00969998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU01669997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU01719997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU01849997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02309997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02339997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02439997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02679997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02699997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU02739997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03029997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03039997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03139997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03179997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03639997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03739998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03759998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03769997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03779998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03839998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03849997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03859997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03889997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU03969998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04009998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04059997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04069997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04209997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04249997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04259997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04419998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04489998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04539998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04739998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04789997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU04989997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05059997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05189998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05309997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05309998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05329997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05379998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05759998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05889997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU05999998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06119997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06149998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06179997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06299998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06549998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06649997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06649998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06779998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06789998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU06879997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07039998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07159998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07169997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07169998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07179997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07179998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU07189998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU08519997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU08529997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU09959997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU15989997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16519998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16639997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16639998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16769997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16769998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16959997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU16959998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU17089997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU17099997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU17149998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU17229998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU17839998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU18959998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU18969997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19009997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19009998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19119997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19119998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19219997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19249997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19249998> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU19309997> ;
+  qms:flags <https://data.pdok.nl/cbs/2015/id/buurt/BU99999999> ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:throughput
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Throughput of the sources measures the amount of HTTP requests answered per second."@en ;
+  skos:prefLabel "Throughput"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:performance ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:timeliness
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "Timeliness measures how up-to-data data is, relative to a specific task."@en ;
+  skos:prefLabel "Timeliness"@en ;
+  dqv:inCategory qmd:datasetdynamicity ;
+  dqv:inCategory qmd:intrinsic ;
+.
+qmd:timelinessideal
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Ideally, both datasets would be equally fresh, especially with highly volatile data. Differences in freshness could result in inconsistencies even though, at time of publication, each dataset was flawless. This metric measures the difference between the ideal freshness (freshness of the primary dataset) and the freshness of the Target dataset."@en ;
+  skos:prefLabel "Timeliness Ideal"@en ;
+  dqv:expectedDataType xsd:dayTimeDuration ;
+  dqv:inDimension qmd:timeliness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:timelinessofdatasource
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "This metric measures the delay with which the semantic source is updated in regard to its original source, if present. "@en ;
+  skos:prefLabel "Timeliness of Datasource"@en ;
+  dqv:expectedDataType xsd:dayTimeDuration ;
+  dqv:inDimension qmd:timeliness ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:timelinessofresource
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "A positive difference between current and expiry time of the resource implies data source to be outdated"@en ;
+  skos:prefLabel "Timeliness of Resource"@en ;
+  dqv:expectedDataType xsd:dayTimeDuration ;
+  dqv:inDimension qmd:timeliness ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:timesincelastmodification
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Time since last modification"@en ;
+  skos:prefLabel "Time Since Last Modification"@en ;
+  dqv:expectedDataType xsd:dayTimeDuration ;
+  dqv:inDimension qmd:currency ;
+  qms:hasMetricType qms:DatasetQuality ;
+.
+qmd:undefinedclasses
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measured usage of undefined classes"@en ;
+  skos:prefLabel "Undefined Classes"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:undefinedproperties
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Measured usage of undefined properties"@en ;
+  skos:prefLabel "Undefined Properties"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:understandability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The ease with which data can be comprehended, without ambiguity, and used."@en ;
+  skos:prefLabel "Understandability"@en ;
+  dqv:inCategory qmd:representation ;
+.
+qmd:uniformspatialrepresentation
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Uniformity in datatype for  geometry is measured for this metric. This metric checks whether every geometry is of a specific datatype."@en ;
+  skos:prefLabel "Uniform Spatial Representation"@en ;
+  dqv:expectedDataType xsd:float ;
+  dqv:inDimension qmd:representationalConsistency ;
+  qms:hasMetricType qms:InstanceQuality ;
+.
+qmd:validitytimeinterval
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Given that an expiry time is known, a validity interval can be computed based on the time of input and the expiry date. If no expiry time is provided, a measure used in Metric <Exclusion of outdated data> can be used to calculate when the dataset is due for an update. However, this alternative would not measure validity as strictly and instead would measure 'likeliness of being up to date' and hence valid."@en ;
+  skos:prefLabel "Validity Time Interval"@en ;
+  dqv:expectedDataType xsd:date ;
+  dqv:inDimension qmd:volatility ;
+  qms:hasMetricType qms:DataQuality ;
+.
+qmd:verifiability
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The ease with which the data can be assessed for correctness."@en ;
+  skos:prefLabel "Verifiability"@en ;
+  dqv:inCategory qmd:contextual ;
+  dqv:inCategory qmd:trust ;
+.
+qmd:versatility
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The availability of alternative representations and access methods."@en ;
+  skos:prefLabel "Versatility"@en ;
+  dqv:inCategory qmd:representation ;
+.
+qmd:vocabularysimilarity
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Interlinking datasets that use different notations for identical information can convolute the process. If both datasets use a vocabulary, it can provide junctions where the two datasets can be interlinked."@en ;
+  skos:prefLabel "Vocabulary Similarity"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:representationalConsistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:voidvalues
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Metric ;
+  skos:definition "Usage owl:Inverse-functionalProperty implies a resource can be uniquely identified by the value of the property. When this usage results in faulty values (void values), it will no longer uniquely identify a resource, but each resource with a similar void value, resulting in an explosion of owl:sameAs links."@en ;
+  skos:note "void values should be listed and respective instances annotated."@en ;
+  skos:prefLabel "Void Values"@en ;
+  dqv:expectedDataType xsd:integer ;
+  dqv:inDimension qmd:consistency ;
+  qms:hasMetricType qms:SchemaQuality ;
+.
+qmd:volatility
+  rdf:type owl:NamedIndividual ;
+  rdf:type dqv:Dimension ;
+  skos:definition "The frequency of changes in the data over time."@en ;
+  skos:prefLabel "Volatility"@en ;
+  dqv:inCategory qmd:datasetdynamicity ;
+.

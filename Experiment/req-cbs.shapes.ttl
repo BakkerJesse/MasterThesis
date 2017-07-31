@@ -1,0 +1,73 @@
+# baseURI: http://data.labs.pdok.nl/quality/req/cbs
+# prefix: reqCBS
+
+@prefix dash: <http://datashapes.org/dash#> .
+@prefix dqv: <http://www.w3.org/ns/dqv#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix qmd: <http://data.labs.pdok.nl/quality/id/> .
+@prefix qms: <http://data.labs.pdok.nl/quality/def#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix reqCBS: <http://data.labs.pdok.nl/quality/req/cbs#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+reqCBS:
+  rdf:type owl:Ontology ;
+  owl:imports <http://datashapes.org/dash> ;
+.
+reqCBS:amountofresources
+  rdf:type rdfs:Class ;
+  rdf:type sh:NodeShape ;
+  rdfs:label "Amount Of Resources" ;
+  skos:note "A minimum of 2500 resources is required in order to acquire consensus over the creation of a linkset."@en ;
+  prov:generatedAtTime "2017-06-18"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+  sh:property [
+      sh:path (
+          qms:hasMeasurement
+          dqv:value
+        ) ;
+      sh:datatype xsd:integer ;
+      sh:minInclusive 2500 ;
+    ] ;
+  sh:targetNode qmd:amountofresources ;
+.
+reqCBS:geometryblanknode
+  rdf:type rdfs:Class ;
+  rdf:type sh:NodeShape ;
+  rdfs:label "Geometry Blank Node" ;
+  skos:note ""@en ;
+  prov:generatedAtTime "2017-06-18"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+  sh:property [
+      sh:path (
+          qms:hasMeasurement
+          dqv:value
+        ) ;
+      sh:datatype xsd:float ;
+      sh:minInclusive 1.0 ;
+    ] ;
+  sh:targetNode qmd:geometryblanknode ;
+.
+reqCBS:scalability
+  rdf:type rdfs:Class ;
+  rdf:type sh:NodeShape ;
+  rdfs:label "Scalability" ;
+  rdfs:subClassOf rdfs:Resource ;
+  skos:note ""@en ;
+  prov:generatedAtTime "2017-06-18"^^xsd:date ;
+  prov:wasGeneratedBy "Assessor1"@en ;
+  sh:property [
+      sh:path (
+          qms:hasMeasurement
+          dqv:value
+        ) ;
+      sh:datatype xsd:boolean ;
+      sh:flags "i" ;
+      sh:pattern "^T" ;
+    ] ;
+  sh:targetNode qmd:scalability ;
+.
